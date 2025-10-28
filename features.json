@@ -1,0 +1,1 @@
+{ "numeric": ["depHour"], "categorical": ["origin", "dest"] }
