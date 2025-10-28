@@ -1,0 +1,5 @@
+# .gitignore
+data/*.csv
+*.parquet
+*.feather
+*.zip
