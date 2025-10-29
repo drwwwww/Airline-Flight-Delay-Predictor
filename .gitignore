@@ -1,6 +1,6 @@
 # .gitignore
 data/flight_delays_full.csv
-!data/sample_flight_delays_full.csv
+!data/flight_delays_sample.csv
 *.parquet
 *.feather
 *.zip
