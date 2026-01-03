@@ -1,7 +1,40 @@
-# .gitignore
+# Environment variables (API keys, secrets)
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+ENV/
+
+# Data files
 data/flight_delays_full.csv
 !data/flight_delays_sample.csv
 *.parquet
 *.feather
 *.zip
-*.env
+*.csv
+!data/flight_delays_sample.csv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
