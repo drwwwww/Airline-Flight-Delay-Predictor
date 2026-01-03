@@ -119,8 +119,10 @@ def predict(req: PredictRequest):
         flights, matched_code, tried = try_get_schedules_with_variants(req.airline, flight_num, req.departure_date)
 
         if not flights:
-            detail = {"message": f"No flights found for {req.airline}{flight_num} on {req.departure_date}", "tried": tried}
-            raise HTTPException(status_code=404, detail=str(detail))
+            raise HTTPException(
+                status_code=404,
+                detail=f"No scheduled flights found for {req.airline.upper()}{flight_num} on {req.departure_date}. Please verify the flight number, airline, and date."
+            )
 
         if len(flights) > 1:
             candidates = []
