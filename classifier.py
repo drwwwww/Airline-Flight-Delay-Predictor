@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.impute import SimpleImputer
-from sklearn.metrics import roc_auc_score, confusion_matrix, average_precision_score, f1_score, accuracy_score
+from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 
@@ -18,6 +18,8 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+MODEL_PATH = Path(__file__).with_name("flight_delay_pipeline.joblib")
+
 pd.set_option("display.max_columns", None)
 pd.set_option("mode.copy_on_write", True)
 
@@ -25,7 +27,7 @@ if os.path.exists("data/flight_delays_full.csv"):
     df = pd.read_csv("data/flight_delays_full.csv")
 else:
     df = pd.read_csv("data/flight_delays_sample.csv")
-    
+
 # Datacleaning
 
 date_cols = ["ScheduledDeparture", "ActualDeparture", "ScheduledArrival", "ActualArrival"]
@@ -84,6 +86,8 @@ pipeline = Pipeline([
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 
 pipeline.fit(X_train,y_train)
+joblib.dump(pipeline, MODEL_PATH)
+print(f"Saved trained pipeline to {MODEL_PATH}")
 
 prediction = pipeline.predict(X_test)
 

@@ -4,3 +4,4 @@ data/flight_delays_full.csv
 *.parquet
 *.feather
 *.zip
+*.env
